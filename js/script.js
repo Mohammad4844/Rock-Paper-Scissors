@@ -24,22 +24,13 @@ function playRound(playerSelection, computerSelection) {
 
    switch (playerSelection) {
       case "Rock":
-         if (computerSelection === "Scissors")
-            win = true;
-         else
-            win = false;
+         win = (computerSelection === "Scissors") ? true : false;
          break;
       case "Paper":
-         if (computerSelection === "Rock")
-            win = true;
-         else
-            win = false;
+         win = (computerSelection === "Rock") ? true : false;
          break;
       case "Scissors":
-         if (computerSelection === "Paper")
-            win = true;
-         else
-            win = false;
+         win = (computerSelection === "Paper") ? true : false;
          break;
       default:
          return "You entered an incorrect selection!"; //for when user inputs something else

@@ -4,17 +4,22 @@
 <head>
      <meta charset="UTF-8" />
      <title>Rock Paper Scissors</title>
-     <style>
-          body {
-               text-align: center;
-          }
-     </style>
+     <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-     <h2>Open the console, and then press the button to play!</h2>
-     <button type="button" onclick="game();">Play</button>
-     <script src="js/script.js"></script>
+     <h2>Choose an option to play against a bot!</h2>
+     <div class="optionsTab">
+          <button type="button" class="options rock"><img src="images/rock.png" alt="Rock" title="Rock" /></button>
+          <button type="button" class="options paper"><img src="images/paper.png" alt="Paper" title="Paper" /></button>
+          <button type="button" class="options scissors"><img src="images/scissors.png" alt="Scissors" title="Scissors" /></button>
+     </div>
+     <div>
+          <button type="button" class="startGame">Reset</button>
+     </div>
+
+     <script src="js/script.js" defer></script>
+
 </body>
 
 </html>

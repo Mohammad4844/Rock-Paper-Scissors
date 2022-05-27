@@ -1,3 +1,24 @@
+let playerScore = 0;
+let computerScore = 0;
+let roundsPlayed = 0;
+
+let rockSelector = document.querySelector(".rock");
+let paperSelector = document.querySelector(".paper");
+let scissorsSelector = document.querySelector(".scissors");
+
+rockSelector.addEventListener("click", () => whenOptionSelected("Rock"));
+paperSelector.addEventListener("click", () => whenOptionSelected("Paper"));
+scissorsSelector.addEventListener("click", () => whenOptionSelected("Scissors"));
+
+let startGame = document.querySelector(".startGame");
+startGame.addEventListener("click", resetScores);
+
+const bod = document.querySelector("body");
+const scoreBoardTitle = document.createElement("div");
+const scoreBoard = document.createElement("div");
+scoreBoardTitle.classList.add("scoreBoardTitle", "scoreBoard");
+scoreBoard.classList.add("scoreBoard");
+
 function computerPlay() {
    switch (getRandomInt()) {
       case 0:
@@ -35,38 +56,52 @@ function playRound(playerSelection, computerSelection) {
       default:
          return "You entered an incorrect selection!"; //for when user inputs something else
    }
-
    if (win)
       return "You Won! " + playerSelection + " beats " + computerSelection;
    else
       return "You Lost! " + computerSelection + " beats " + playerSelection;
 }
 
-function game() {
-   var playerScore = 0;
-   var computerScore = 0;
-
-   for (var i = 0; i < 5; i++) {
-      var playerSelection = prompt("Choose either: Rock, Paper or Scissors");
-      result = playRound(playerSelection, computerPlay());
-      console.log(result);
-      if (result.charAt(4) === 'W') //this IF adds scores to the respective winners
-         playerScore++;
-      else if (result.charAt(4) === 'L')
-         computerScore++;
-   }
-
-   outputResult(playerScore, computerScore);
+function whenOptionSelected(selection) {
+   result = playRound(selection, computerPlay());
+   if (result.charAt(4) === 'W') //this IF adds scores to the respective winners
+      playerScore++;
+   else if (result.charAt(4) === 'L')
+      computerScore++;
+   roundsPlayed++;
+   updateAndShowScores(result);
+   if (roundsPlayed === 5)
+      endGame();
 }
 
-function outputResult(playerScore, computerScore) {
-   var outputScores = "\nYour Score: " + playerScore +
-      "\nComputer Score: " + computerScore; //helper string to output scores for both easily
+function updateAndShowScores(result) {
+   scoreBoardTitle.textContent = result;
+   scoreBoard.textContent = "Your Score: " + playerScore + "\nComputer Score: " + computerScore;
+   bod.appendChild(scoreBoardTitle);
+   bod.appendChild(scoreBoard);
+}
 
+function endGame() {
+   bod.removeChild(bod.lastChild);
+   bod.removeChild(bod.lastChild);
+   outputFinalResult();
+   resetScores();
+}
+
+function outputFinalResult() {
+   var outputScores = "\nYour Score: " + playerScore +
+      "\nComputer Score: " + computerScore + "\nClick OK to play again!";
    if (playerScore > computerScore)
       alert("You won the Game!" + outputScores);
    else if (playerScore < computerScore)
       alert("You lost the Game!" + outputScores);
    else
       alert("You tied! " + outputScores);
+}
+
+function resetScores() {
+   roundsPlayed = 0;
+   playerScore = 0;
+   computerScore = 0;
+   updateAndShowScores("Let's Play!");
 }

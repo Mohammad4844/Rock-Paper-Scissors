@@ -1,0 +1,29 @@
+body > * {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  width: 150px;
+  height: auto;
+  border-radius: 30%;
+}
+
+.optionsTab {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 15px
+}
+
+.options {
+    border-radius: 30%;
+}
+
+.startGame {
+  margin: 10px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  padding: 7px;
+  border-radius:40%;
+}
